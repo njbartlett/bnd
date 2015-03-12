@@ -1,6 +1,11 @@
 package org.bndtools.maven;
 
-
+/**
+ * Represents a Maven version with the ability to translate to a bnd version,
+ * with SNAPSHOT being replaced by bnd's ${tstamp} macro.
+ * 
+ * @author Neil Bartlett <neil.bartlett@paremus.com>
+ */
 public class MavenVersion {
 
 	private static final String SNAPSHOT = "SNAPSHOT";
@@ -45,7 +50,7 @@ public class MavenVersion {
 	}
 
 	/**
-	 * Convert the maven version to a bnd version. This is an OSGi-compatible version
+	 * Convert the Maven version to a bnd version. This is an OSGi-compatible version
 	 * string except that it may contain macros such as <code>${tstamp}</code>.
 	 */
 	public String toBndVersion() {
