@@ -94,9 +94,13 @@ public class BndMavenPlugin extends AbstractMojo {
 
 			// Include local project packages automatically
 			String includes = builder.getProperty(Constants.INCLUDERESOURCE);
+			StringBuilder newIncludes = new StringBuilder().append(classesDir.getPath());
 			if (includes == null || includes.trim().length() == 0)
-				builder.setProperty(Constants.INCLUDERESOURCE, classesDir.getPath());
-			
+				includes = newIncludes.toString();
+			else
+				includes = newIncludes.append(',').append(includes).toString();
+			builder.setProperty(Constants.INCLUDERESOURCE, includes);
+
 			// Set Bundle-Version
 			MavenVersion mvnVersion = new MavenVersion(project.getVersion());
 			builder.setProperty(Constants.BUNDLE_VERSION, mvnVersion.toBndVersion());
